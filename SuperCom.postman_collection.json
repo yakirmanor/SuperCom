@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "50a1d075-a8f9-49fd-90ec-870cfac46454",
+		"name": "SuperCom",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4314766"
+	},
+	"item": [
+		{
+			"name": "Get Weather Forecast",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/weatherforecast",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"weatherforecast"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tickets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/tickets",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"tickets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Ticket",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/tickets/42fffe14-d166-4d5d-a1a7-79ff3dda1515",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"tickets",
+						"42fffe14-d166-4d5d-a1a7-79ff3dda1515"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Ticket",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var moment = require(\"moment\");\r",
+							"\r",
+							"pm.environment.set('ticketDate', moment().add(14, 'days').toISOString());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"{{$guid}}\",\n\t\"name\": \"Test Create Ticket\",\n\t\"description\": \"Description of the test create ticket\",\n\t\"category\": \"Prison\",\n\t\"date\": \"{{ticketDate}}\",\n\t\"city\": \"Tel Aviv\",\n\t\"location\": \"Israel\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/tickets/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"tickets",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Ticket",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var moment = require(\"moment\");\r",
+							"\r",
+							"pm.environment.set('ticketDate', moment().add(14, 'days').toISOString());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Test Create Ticket updated 2\",\n\t\"description\": \"Description of the test event updated 2\",\n\t\"category\": \"Prison\",\n\t\"date\": \"{{ticketDate}}\",\n\t\"city\": \"London\",\n\t\"location\": \"Tower of London updated\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/tickets/592b8968-ba9d-4584-90b7-4c19c20a3263",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"tickets",
+						"592b8968-ba9d-4584-90b7-4c19c20a3263"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Ticket",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/tickets/bc0bd95c-8760-4c88-be9c-5ae22d29aa8f",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"tickets",
+						"bc0bd95c-8760-4c88-be9c-5ae22d29aa8f"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:5000"
+		}
+	]
+}
