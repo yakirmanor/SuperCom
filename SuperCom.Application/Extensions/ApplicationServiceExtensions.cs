@@ -19,10 +19,10 @@ namespace SuperCom.Application.Extensions
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
 
-            services.AddDbContext<DataContext>(opt =>
-            {
-                opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
-            });
+            services.AddDbContext<DataContext>(options => 
+                options.UseSqlServer(config.GetConnectionString("DefaultConnection"))
+            );
+
             services.AddCors(opt =>
             {
                 opt.AddPolicy("CorsPolicy", policy =>
