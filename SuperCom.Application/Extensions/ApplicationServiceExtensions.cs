@@ -13,7 +13,7 @@ namespace SuperCom.Application.Extensions
     //dependencies
     public static class ApplicationServiceExtensions
     {
-        public static IServiceCollection AddApplicationServices(this IServiceCollection services,
+        public static IServiceCollection AddSuperComApplicationServices(this IServiceCollection services,
             IConfiguration config)
         {
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

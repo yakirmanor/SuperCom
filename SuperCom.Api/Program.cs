@@ -1,9 +1,9 @@
-using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using SuperCom.Application.Extensions;
 using SuperCom.Api.Middleware;
 using SuperCom.Persistence;
 using SuperCom.Api.Extensions;
+using SuperCom.Services.RabbitMq;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddApiServices(builder.Configuration);
-builder.Services.AddApplicationServices(builder.Configuration);
+builder.Services.AddSuperComApplicationServices(builder.Configuration);
+builder.Services.AddRabbitMqServices(builder.Configuration);
 
 var app = builder.Build();
 
