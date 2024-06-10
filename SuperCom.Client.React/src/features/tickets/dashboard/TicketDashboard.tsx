@@ -21,9 +21,9 @@ export default observer(function TicketDashboard() {
             <Grid.Column width='10'>
                 <TicketList />
             </Grid.Column>
-            <Grid.Column width='6'>
+            {/* <Grid.Column width='6'>
                 <TicketFilters />
-            </Grid.Column>
+            </Grid.Column> */}
         </Grid>
     )
 })

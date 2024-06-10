@@ -1,7 +1,9 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react'
-import {Button, Header, Item, Segment, Image} from 'semantic-ui-react'
+import { Link } from 'react-router-dom';
+import { Button, Header, Item, Segment, Image, Label } from 'semantic-ui-react'
 import {Ticket} from "../../../app/models/ticket";
+import { useStore } from '../../../app/stores/store';
 
 const ticketImageStyle = {
     filter: 'brightness(30%)'
@@ -21,6 +23,8 @@ interface Props {
 }
 
 export default observer (function TicketDetailedHeader({ticket}: Props) {
+    const { ticketStore } = useStore();
+
     return (
         <Segment.Group>
             <Segment basic attached='top' style={{padding: '0'}}>
@@ -44,11 +48,8 @@ export default observer (function TicketDetailedHeader({ticket}: Props) {
                 </Segment>
             </Segment>
             <Segment clearing attached='bottom'>
-                <Button color='red'>Delete Ticket</Button>
-                <Button>Disable Ticket</Button>
-                <Button color='orange' floated='right'>
-                    Manage Ticket
-                </Button>
+                <Button onClick={() => ticketStore.deleteTicket(ticket.id)} as={Link} to='/tickets' color='red'>Delete Ticket</Button>
+                <Button as={Link} to={`/manage/${ticket.id}`} color='orange' floated='right'>Manage Event</Button>
             </Segment>
         </Segment.Group>
     )
